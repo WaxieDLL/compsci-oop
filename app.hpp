@@ -15,7 +15,13 @@ public:
 	std::optional<CWindow*> AddWindow(const std::string& name); //returns created window pointer or std::nullopt if it fails.
 	std::optional<CWindow*> GetWindow(const std::string& name); //returns window that matches with name you provided.
 	bool SetActiveWindow(const std::string& name); //returns true if window successfully activated.
+	bool SetActiveWindow(CWindow* window); //returns true if window successfully activated.
 	void MainLoop();
+
+	bool IsValid() const
+	{
+		return m_bInitialized;
+	}
 private:
 	bool m_bInitialized{ false };
 	GLFWwindow* m_pWindowGLFW{ nullptr };

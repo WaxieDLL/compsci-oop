@@ -12,14 +12,8 @@
 #include "gui/window.hpp"
 #define WINDOW_SIZE ImVec2(1280, 720)
 
-static void glfw_error_callback(int error, const char* description)
-{
-	fprintf(stderr, "GLFW Error %d: %s\n", error, description);
-}
-
 CAppManager::CAppManager()
 {
-	glfwSetErrorCallback(glfw_error_callback);
 	if (!glfwInit())
 		return;
 
@@ -97,6 +91,16 @@ bool CAppManager::SetActiveWindow(const std::string& name)
 	return m_pActiveWindow != nullptr;
 }
 
+bool CAppManager::SetActiveWindow(CWindow* window)
+{
+	if (!window)
+		return false;
+
+	m_pActiveWindow = window;
+
+	return true;
+}
+
 void CAppManager::MainLoop()
 {
 	static uint8_t tabidx = 0;
@@ -109,7 +113,6 @@ void CAppManager::MainLoop()
 
 		if (m_pActiveWindow)
 			m_pActiveWindow->OnMainLoop();
-
 
 		// Rendering
 		ImGui::Render();
