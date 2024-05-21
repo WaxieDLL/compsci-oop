@@ -22,7 +22,7 @@ file(GLOB SOURCES
     "main.cpp"
 )
 
-add_executable (${PROJECT_NAME} ${SOURCES}  "gui/window.cpp" "app.cpp" "widgets/impl/navbar.cpp")
+add_executable (${PROJECT_NAME} ${SOURCES}  "gui/window.cpp" "app.cpp" "widgets/impl/navbar.cpp" "dependencies/stb_image.h" "widgets/impl/loaders.cpp")
 include_directories(${PROJECT_NAME} PRIVATE "imgui/")
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw ${OPENGL_LIBRARY})
 if (CMAKE_VERSION VERSION_GREATER 3.12)

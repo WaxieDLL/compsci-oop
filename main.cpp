@@ -30,39 +30,9 @@ int main()
 	return 0;
 }
 
-void HomeContent(CAppManager* app)
-{
-	if (!app)
-		return;
-
+static void DrawNavbar(CAppManager* app) {
 	std::string selected{};
-
-	Widgets::Navbar("Police Station", { "Home", "Dispatch", "Search" }, &selected);
-
-	if(selected == "Home")
-	{
-		app->SetActiveWindow("Home Window");
-	}
-	else if(selected == "Dispatch")
-	{
-		app->SetActiveWindow("Dispatch Window");
-	}
-	else if(selected == "Search")
-	{
-		app->SetActiveWindow("Home Window");
-	}
-
-	ImGui::TextUnformatted("Home Window");
-}
-void DispatcherContent(CAppManager* app)
-{
-	if (!app)
-		return;
-
-	std::string selected{};
-
-	Widgets::Navbar("Police Station", { "Home", "Dispatch", "Search" }, &selected);
-
+	Widgets::Navbar("Police Station", { "Home", "Dispatch", "Officers", "Search" }, &selected);
 	if (selected == "Home")
 	{
 		app->SetActiveWindow("Home Window");
@@ -71,10 +41,30 @@ void DispatcherContent(CAppManager* app)
 	{
 		app->SetActiveWindow("Dispatch Window");
 	}
+	else if (selected == "Officers")
+	{
+		app->SetActiveWindow("Home Window");
+	}
 	else if (selected == "Search")
 	{
 		app->SetActiveWindow("Home Window");
 	}
+}
 
+void HomeContent(CAppManager* app)
+{
+	if (!app)
+		return;
+
+	DrawNavbar(app);
+
+	ImGui::TextUnformatted("Home Window");
+}
+void DispatcherContent(CAppManager* app)
+{
+	if (!app)
+		return;
+
+	DrawNavbar(app);
 	ImGui::TextUnformatted("Dispatch Window");
 }
