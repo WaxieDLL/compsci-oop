@@ -1,4 +1,5 @@
-﻿#include "app.hpp"
+﻿#define IMGUI_DEFINE_MATH_OPERATORS
+#include "app.hpp"
 #include "gui/window.hpp"
 #include "widgets/widgets.hpp"
 
@@ -11,7 +12,7 @@ int main()
 	if (!app.IsValid())
 		return -1;
 
-	const auto pHomeWindow = app.AddWindow("Home Window");
+	const auto pHomeWindow = app.AddWindow("Home Window"); //it will be default window since we added it first
 	if (pHomeWindow.has_value())
 		pHomeWindow.value()->SetCallback([&] {HomeContent(&app); });
 
@@ -19,36 +20,53 @@ int main()
 	if (pDispatchWindow.has_value())
 		pDispatchWindow.value()->SetCallback([&] {DispatcherContent(&app); });
 
-	app.SetActiveWindow("Home Window");
 
-	/* This also works!
-	if(pHomeWindow.has_value())
-		app.SetActiveWindow(pHomeWindow.value());
+	/* Ways of changing active window
+	* 
+	*	app.SetActiveWindow("Home Window");
+	*
+	*	// This also works!
+	*
+	*	if(pHomeWindow.has_value())
+	*		app.SetActiveWindow(pHomeWindow.value());
 	*/
+	
 
 	app.MainLoop();
 	return 0;
 }
 
 static void DrawNavbar(CAppManager* app) {
-	std::string selected{};
-	Widgets::Navbar("Police Station", { "Home", "Dispatch", "Officers", "Search" }, &selected);
-	if (selected == "Home")
+	static std::string selected = "Home";
+	if (Widgets::Navbar("Police Station", { "Home", "Dispatch", "Officers", "Search" }, &selected))
 	{
-		app->SetActiveWindow("Home Window");
+		if (selected == "Home")
+		{
+			app->SetActiveWindow("Home Window");
+		}
+		else if (selected == "Dispatch")
+		{
+			app->SetActiveWindow("Dispatch Window");
+		}
+		else if (selected == "Officers")
+		{
+			app->SetActiveWindow("Home Window");
+		}
+		else if (selected == "Search")
+		{
+			app->SetActiveWindow("Home Window");
+		}
 	}
-	else if (selected == "Dispatch")
-	{
-		app->SetActiveWindow("Dispatch Window");
-	}
-	else if (selected == "Officers")
-	{
-		app->SetActiveWindow("Home Window");
-	}
-	else if (selected == "Search")
-	{
-		app->SetActiveWindow("Home Window");
-	}
+}
+
+static void ContentWrapper(std::function<void()> callback, ImVec2 start_pos) {
+	ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(ImColor(16, 16, 16)));
+	ImGui::SetCursorPos(start_pos);
+	ImGui::BeginChild("Content", ImGui::GetWindowSize() - start_pos);
+	if (callback)
+		callback();
+	ImGui::EndChild();
+	ImGui::PopStyleColor();
 }
 
 void HomeContent(CAppManager* app)
@@ -57,8 +75,9 @@ void HomeContent(CAppManager* app)
 		return;
 
 	DrawNavbar(app);
-
-	ImGui::TextUnformatted("Home Window");
+	ContentWrapper([] {
+		ImGui::TextUnformatted("Home Window");
+		}, {0, 70});
 }
 void DispatcherContent(CAppManager* app)
 {
@@ -66,5 +85,7 @@ void DispatcherContent(CAppManager* app)
 		return;
 
 	DrawNavbar(app);
-	ImGui::TextUnformatted("Dispatch Window");
+	ContentWrapper([] {
+		ImGui::TextUnformatted("Dispatch Window");
+		}, { 0, 70 });
 }

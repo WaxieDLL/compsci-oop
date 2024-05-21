@@ -7,9 +7,8 @@
 
 #include <ranges>
 
-
-
 #include "gui/window.hpp"
+#include "widgets/widgets.hpp"
 #define WINDOW_SIZE ImVec2(1280, 720)
 
 CAppManager::CAppManager()
@@ -66,6 +65,9 @@ std::optional<CWindow*> CAppManager::AddWindow(const std::string& name)
 
 	m_windows[name] = new CWindow({ name, {0.f, 0.f},  WINDOW_SIZE, true });
 
+	if (m_pActiveWindow == nullptr)
+		m_pActiveWindow = m_windows[name];
+
 	return m_windows[name];
 }
 
@@ -109,6 +111,9 @@ void CAppManager::MainLoop()
 		glfwPollEvents();
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
+
+		Loaders::BeforeNewFrame();
+
 		ImGui::NewFrame();
 
 		if (m_pActiveWindow)
