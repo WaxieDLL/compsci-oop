@@ -20,7 +20,6 @@ int main()
 	if (pDispatchWindow.has_value())
 		pDispatchWindow.value()->SetCallback([&] {DispatcherContent(&app); });
 
-
 	/* Ways of changing active window
 	* 
 	*	app.SetActiveWindow("Home Window");
@@ -30,7 +29,6 @@ int main()
 	*	if(pHomeWindow.has_value())
 	*		app.SetActiveWindow(pHomeWindow.value());
 	*/
-	
 
 	app.MainLoop();
 	return 0;

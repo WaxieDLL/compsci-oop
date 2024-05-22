@@ -1,0 +1,12 @@
+#ifndef EUNITS_HPP
+#define EUNITS_HPP
+
+enum EUnits {
+	UNIT_NONE,
+	UNIT_POLICE,
+	UNIT_AMBULANCE,
+	UNIT_FIREDEPARTMENT,
+	UNIT_MAX
+};
+
+#endif //EUNITS_HPP
