@@ -1,0 +1,107 @@
+﻿[
+  {
+    "caller": "Anna Nowak",
+    "incident": "Burglary",
+    "location": "Lodz, Poland",
+    "details": "I heard glass breaking and saw someone entering my neighbor's house.",
+    "units": [ "police" ]
+  },
+  {
+    "caller": "Tomasz Kowalski",
+    "incident": "Medical",
+    "location": "Lodz, Poland",
+    "details": "My father is having chest pains and difficulty breathing.",
+    "units": [ "ambulance" ]
+  },
+  {
+    "caller": "Maria Zielinska",
+    "incident": "Fire",
+    "location": "Lodz, Poland",
+    "details": "There is a fire in my kitchen, and it's spreading quickly!",
+    "units": [ "fire department" ]
+  },
+  {
+    "caller": "Jakub Wiśniewski",
+    "incident": "Shooting",
+    "location": "Lodz, Poland",
+    "details": "Someone fired a gun near to my house!",
+    "units": [ "police", "ambulance" ]
+  },
+  {
+    "caller": "Agnieszka Nowicka",
+    "incident": "Burglary",
+    "location": "Lodz, Poland",
+    "details": "I saw someone trying to break into my car.",
+    "units": [ "police" ]
+  },
+  {
+    "caller": "Piotr Zalewski",
+    "incident": "Medical",
+    "location": "Lodz, Poland",
+    "details": "A child fell from a high place and is unconscious.",
+    "units": [ "ambulance", "fire department" ]
+  },
+  {
+    "caller": "Ewa Majewska",
+    "incident": "Fire",
+    "location": "Lodz, Poland",
+    "details": "I see smoke coming from my neighbor's house.",
+    "units": [ "fire department", "police" ]
+  },
+  {
+    "caller": "Krzysztof Lewandowski",
+    "incident": "Shooting",
+    "location": "Lodz, Poland",
+    "details": "I heard multiple gunshots in the park nearby.",
+    "units": [ "police", "ambulance" ]
+  },
+  {
+    "caller": "Magdalena Jankowska",
+    "incident": "Burglary",
+    "location": "Lodz, Poland",
+    "details": "Someone is trying to force open the door to my apartment.",
+    "units": [ "police" ]
+  },
+  {
+    "caller": "Marek Szymanski",
+    "incident": "Medical",
+    "location": "Lodz, Poland",
+    "details": "My wife has fainted and is not responding.",
+    "units": [ "ambulance" ]
+  },
+  {
+    "caller": "Karolina Grabowska",
+    "incident": "Fire",
+    "location": "Lodz, Poland",
+    "details": "There is a fire in the basement of my building.",
+    "units": [ "fire department", "police" ]
+  },
+  {
+    "caller": "Wojciech Wojcik",
+    "incident": "Shooting",
+    "location": "Lodz, Poland",
+    "details": "I saw someone with a gun running down the street.",
+    "units": [ "police" ]
+  },
+  {
+    "caller": "Izabela Pietrzak",
+    "incident": "Burglary",
+    "location": "Lodz, Poland",
+    "details": "I think someone broke into my garage.",
+    "units": [ "police" ]
+  },
+  {
+    "caller": "Andrzej Dabrowski",
+    "incident": "Medical",
+    "location": "Lodz, Poland",
+    "details": "A person collapsed on the sidewalk and is not moving.",
+    "units": [ "ambulance" ]
+  },
+  {
+    "caller": "Dorota Wolska",
+    "incident": "Fire",
+    "location": "Lodz, Poland",
+    "details": "My stove caught fire and it's spreading.",
+    "units": [ "fire department", "ambulance" ]
+  }
+]

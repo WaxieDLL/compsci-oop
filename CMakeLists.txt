@@ -16,15 +16,18 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(glfw)
 find_package(OpenGL REQUIRED)
 
+FetchContent_Declare(spdlog GIT_REPOSITORY https://github.com/gabime/spdlog.git GIT_TAG v1.14.1)
+FetchContent_MakeAvailable(spdlog)
+
 file(GLOB SOURCES
     imgui/*.h
     imgui/*.cpp
     "main.cpp"
 )
 
-add_executable (${PROJECT_NAME} ${SOURCES}  "gui/window.cpp" "app.cpp" "widgets/impl/navbar.cpp" "dependencies/stb_image.h" "widgets/impl/loaders.cpp" "backend/classes/units/cpoliceunit.cpp")
+add_executable (${PROJECT_NAME} ${SOURCES}  "gui/window.cpp" "app.cpp" "widgets/impl/navbar.cpp" "dependencies/stb_image.h" "widgets/impl/loaders.cpp" "backend/classes/units/cpoliceunit.cpp" "backend/classes/units/cmedicalunit.cpp" "backend/classes/units/cfireunit.cpp" "backend/classes/calls/cshootingcall.cpp" "backend/classes/calls/cmedicalcall.cpp" "backend/classes/ccallmanager.cpp" "backend/classes/calls/cfirecall.cpp" "backend/classes/calls/cburglarycall.cpp")
 include_directories(${PROJECT_NAME} PRIVATE "imgui/")
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw ${OPENGL_LIBRARY})
+target_link_libraries(${PROJECT_NAME} PRIVATE glfw ${OPENGL_LIBRARY} spdlog)
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 endif()

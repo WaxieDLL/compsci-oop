@@ -2,12 +2,23 @@
 #include "app.hpp"
 #include "gui/window.hpp"
 #include "widgets/widgets.hpp"
+#include "dependencies/json.hpp"
+#include <fstream>
+#include <iostream>
+#include "backend/classes/ccallmanager.hpp"
+#include "backend/interfaces/iemergencycall.hpp"
 
 extern void HomeContent(CAppManager* app);
 extern void DispatcherContent(CAppManager* app);
 
+static void ExampleJsonParsing(CCallManager* pCallManager);
+
 int main()
 {
+	const std::unique_ptr<CCallManager> pCallManager(new CCallManager);
+
+	ExampleJsonParsing(pCallManager.get());
+
 	CAppManager app;
 	if (!app.IsValid())
 		return -1;
@@ -86,4 +97,28 @@ void DispatcherContent(CAppManager* app)
 	ContentWrapper([] {
 		ImGui::TextUnformatted("Dispatch Window");
 		}, { 0, 70 });
+}
+
+void ExampleJsonParsing(CCallManager* pCallManager)
+{
+
+	std::ifstream ifs("sample.json");
+	nlohmann::json sample = nlohmann::json::parse(ifs);
+
+	for (const auto& obj : sample.items())
+	{
+		const auto data = obj.value();
+		if (!data.contains("caller") || !data.contains("incident") || !data.contains("location") || !data.contains("details"))
+			continue;
+
+		std::string caller = data["caller"];
+		std::string incident = data["incident"];
+		std::string location = data["location"];
+		std::string details = data["details"];
+
+		auto emergency_call = pCallManager->CreateEmergencyCall(incident);
+		emergency_call->SetCallerName(caller);
+		emergency_call->SetDetails(details);
+		emergency_call->SetLocation(location);
+	}
 }

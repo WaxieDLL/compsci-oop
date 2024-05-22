@@ -14,7 +14,7 @@ public:
 
 	// I could've used enum instead of this, but it makes the entire interface more readable (hopefully)
 	virtual bool IsPoliceUnit() = 0;
-	virtual bool IsEmergencyUnit() = 0;
+	virtual bool IsMedicalUnit() = 0;
 	virtual bool IsFireUnit() = 0;
 };
 
